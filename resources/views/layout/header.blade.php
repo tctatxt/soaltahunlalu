@@ -1,11 +1,17 @@
 <div class="w-full bg-emerald-500 py-5">
     <h1 class="text-3xl text-center">
         Algoritma Book Store
+        Selamat Datang : {{ $user->name }}
+        @if ($user->grade == '1')
+            Induksi
+        @elseif ($user->grade == '2')
+            Kaisar
+        @endif
     </h1>
 </div>
 <ul class="flex justify-center my-5 gap-5">
     <li>
-        <a href="/" class="hover:text-red-600">
+        <a href="/{{ $user->id }}" class="hover:text-red-600">
             Home
         </a>
     </li>
@@ -22,7 +28,7 @@
             @endphp
             @foreach ($categories as $cat)
                 <li class="px-3 py-5 flex justify-center">
-                    <a href="/category/{{ $cat->id }}">
+                    <a href="/{{ $user->id }}/category/{{ $cat->id }}">
                         {{ $cat->category }}
                     </a>
                 </li>
@@ -30,8 +36,13 @@
         </ul>
     </div>
     <li>
-        <a href="/contact" class="hover:text-red-600">
+        <a href="/{{ $user->id }}/contact" class="hover:text-red-600">
             Contact
+        </a>
+    </li>
+    <li>
+        <a href="/{{ $user->id }}/transaction" class="hover:text-red-600">
+            My Transaction
         </a>
     </li>
 </ul>

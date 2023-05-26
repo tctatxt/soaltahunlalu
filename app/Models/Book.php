@@ -20,4 +20,8 @@ class Book extends Model
     public function Detail(){
         return $this->hasOne(Detail::class);
     }
+
+    public function Transaction(){
+        return $this->belongsToMany(Transaction::class, 'book_transaction');
+    }
 }

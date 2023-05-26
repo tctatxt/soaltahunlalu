@@ -1,5 +1,5 @@
 @extends('layout.master')
-
+@section('title', 'contact')
 @section('content')
     <div class="container mx-auto">
         <h1>Contact Toko</h1>

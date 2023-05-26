@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,19 @@ use App\Http\Controllers\CategoryController;
 |test
 */
 
-Route::get('/', [BookController::class, 'index']);
+Route::get('/{id}', [BookController::class, 'index']);
+// Route::get('/{id}', [BookController::class, 'show']);
 
-Route::get('/category/{id}', [CategoryController::class, 'show']);
+Route::get('/{id}/category/{idCat}', [CategoryController::class, 'show']);
 
-Route::get('/detail/{id}', [BookController::class, 'show']);
-Route::get('/contact', function(){
-    return view('contact');
+Route::get('/{id}/detail/{idCat}', [BookController::class, 'show']);
+
+Route::get('/{id}/contact', function($id){
+    return view('contact',[
+        'user' => User::find($id)
+    ]);
 });
+
+Route::post('/{id}/buyBooks', [TransactionController::class,'store']);
+
+Route::get('/{id}/transaction', [TransactionController::class,'show']);
